@@ -1,0 +1,77 @@
+# version: '3.8'
+
+# services:
+
+#   db:
+#     image: postgres:13
+#     restart: always
+#     environment:
+#       POSTGRES_PASSWORD: fake_password
+#       POSTGRES_DB: logger
+#     volumes:
+#       - postgres-data:/var/lib/postgresql/data
+
+#   services:
+#     build: .
+#     command: uvicorn main:app --host 0.0.0.0
+#     depends_on:
+#       - db
+#     ports:
+#       - "8008:8001"
+#     #   - 4444:4444
+#     # stdin_open: true
+#     # tty: true
+
+# volumes:
+#   postgres-data:
+
+
+
+
+# version: '3.8'
+
+# services:
+#   web:
+#     build: .
+#     command: bash -c 'while !</dev/tcp/db/5432; do sleep 1; done; uvicorn main:app --reload'
+#     volumes:
+#       - .:/app
+#     ports:
+#       - 8008:8000
+#     environment:
+#       - DATABASE_URL=postgresql://fastapi_traefik:fastapi_traefik@db:5432/fastapi_traefik
+#     depends_on:
+#       - db
+#   db:
+#     image: postgres:13-alpine
+#     volumes:
+#       - postgres_data:/var/lib/postgresql/data/
+#     expose:
+#       - 5432
+#     environment:
+#       - POSTGRES_USER=fastapi_traefik
+#       - POSTGRES_PASSWORD=fastapi_traefik
+#       - POSTGRES_DB=fastapi_traefik
+
+# volumes:
+#   postgres_data:
+
+
+# version: "3.8"
+# services:
+#   postgres:
+#     image: postgres:13
+#     ports:
+#       - "5432:5432"
+#     environment:
+#       - POSTGRES_USER=postgres
+#       - POSTGRES_PASSWORD=postgres
+#       - POSTGRES_DB=postgres
+#   web:
+#     build: .
+#     volumes:
+#       - .:/code
+#     ports:
+#       - "8000:8000"
+#     depends_on:
+#       - postgres
