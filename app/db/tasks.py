@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from databases import Database
-from core.config import DATABASE_URL
+from core_.config import DATABASE_URL
 import logging
 
 logger = logging.getLogger(__name__)
